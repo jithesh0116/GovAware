@@ -1,0 +1,31 @@
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Local configuration
+config.local.php
+database.local.php
+
+# Dependencies
+/vendor/
+/node_modules/
+
+# Logs and temporary files
+*.log
+/tmp/
+/temp/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Database backups (not schema)
+*.sql.zip
+*.sql.gz
