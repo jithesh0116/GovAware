@@ -1,124 +1,243 @@
-# Smart Government Scheme Awareness Portal (GovAware)
+# GovAware-Government Scheme Awareness Portal
 
-A complete responsive full-stack PHP-MySQL citizen empowerment web application designed to bridge the awareness gap between deserving citizens and central/state government welfare initiatives.
+GovAware is a responsive, full-stack PHP and MySQL web application designed to help citizens discover, explore, and identify government welfare schemes offered by central and state governments.
 
-Designed as an MCA final year full-stack project utilizing modern aesthetics, English-only layout specifications, eligibility engine calculation, comparison matrices, and administrator CRUD panels.
+Developed as an MCA final-year project, the system provides a centralized platform with scheme discovery, eligibility checking, scheme comparison, citizen dashboards, and administrative management.
 
 ## 🌟 Key Features
 
-1. **Strict English Interface**: Simple, streamlined user interfaces in all directories, dropping dual field fallbacks to keep columns compact and clean.
-2. **Smart Eligibility Wizard**: A dynamic 3-step citizen eligibility checker analyzing Age, Gender, State, Annual Household Income, Occupation, and Education to calculate and display eligible schemes in real-time.
-3. **Interactive Autocomplete Search**: Debounced search matching database values dynamically as the user types.
-4. **Side-by-Side Scheme Comparison**: Citizen utility allowing comparison of up to 3 chosen schemes in a comparison grid.
-5. **Interactive Citizen Dashboard**: Personalized profiles display saved/bookmarked schemes with quick dynamic AJAX removal.
-6. **Form PDF Download Engine**: Custom print styling sheets formatting scheme details beautifully as an official PDF report using standard browser options (`window.print()`).
-7. **Secure Administrator Control Panel**:
-   * Statistics panel tracking total schemes, citizens, feedback messages, and alerts.
-   * Full CRUD Operations for managing schemes inside standard fields.
-   * Citizen profile registry management.
-   * Interactive Feedback view dashboard.
-   * Scheme announcements broadcaster module linking updates directly to scheme records.
-8. **Modern Aesthetic System**: Vibrant color palettes, smooth hover states, micro-interactions, dark mode toggle variables, and fully responsive media queries.
+### 1. Citizen Features
 
----
+- **Scheme Discovery:** Browse government schemes through a structured catalogue.
+- **Smart Eligibility Checker:** A multi-step eligibility wizard that evaluates citizens based on age, gender, state, annual household income, occupation, and education.
+- **Interactive Search:** Dynamic autocomplete search with database-driven suggestions.
+- **Scheme Comparison:** Compare up to three selected schemes side by side.
+- **Citizen Dashboard:** View profile information and manage saved or bookmarked schemes.
+- **Scheme Details:** Access detailed information about individual schemes.
+- **PDF Reports:** Generate print-friendly scheme reports using the browser's print-to-PDF functionality.
+- **Feedback System:** Submit feedback and contact messages through the portal.
+
+### 2. Administrator Features
+
+- **Admin Dashboard:** View statistics for schemes, registered citizens, feedback messages, and notifications.
+- **Scheme Management:** Add, view, edit, and delete scheme records.
+- **Citizen Management:** View registered citizen profiles.
+- **Feedback Management:** Review submitted citizen feedback.
+- **Notification Management:** Publish and manage scheme announcements and updates.
+
+### 3. Interface and Usability
+
+- Responsive layout for desktop, tablet, and mobile devices.
+- English-language interface.
+- Light and dark theme support.
+- Interactive elements and smooth hover effects.
+- Dynamic search and AJAX-based interactions.
+- Consistent layouts and reusable interface components.
+
+## 🧰 Technology Stack
+
+| Component | Technology |
+|---|---|
+| Frontend | HTML5, CSS3, JavaScript |
+| Backend | PHP |
+| Database | MySQL |
+| Database Connectivity | PHP PDO |
+| Asynchronous Operations | AJAX, Fetch API |
+| Local Development | XAMPP |
+| Database Administration | phpMyAdmin |
+| Theme Persistence | Browser LocalStorage |
+| Comparison State | Browser SessionStorage |
 
 ## 📂 Project Directory Structure
 
-```
+```text
 smart-gov-portal/
-├── index.php                  # Home page (Hero + Autocomplete + News Ticker)
-├── about.php                  # Portal mission, interactive timelines, FAQs
-├── login.php                  # Citizen sign-in page with route checking
-├── register.php               # Citizen sign-up page (Age, Income, Occupation, etc.)
-├── logout.php                 # Destroys active user sessions
-├── schemes.php                # Schemes catalog directory with advanced filters
-├── scheme-detail.php          # Detailed details, dynamic bookmarking, PDF prints
-├── eligibility.php            # Dynamic multi-step eligibility calculation page
-├── dashboard.php              # Saved bookmarks & citizen profile demographics
-├── contact.php                # Feedbacks & Contact coordinates submission form
+│
+├── index.php
+├── about.php
+├── login.php
+├── register.php
+├── logout.php
+├── schemes.php
+├── scheme-detail.php
+├── eligibility.php
+├── dashboard.php
+├── contact.php
+│
 ├── admin/
-│   ├── index.php              # Administrative Dashboard panel index
-│   ├── login.php              # Secure officer authenticate page
-│   ├── schemes.php            # Manage schemes (Add / Edit / Delete CRUD forms)
-│   ├── users.php              # Citizens profile registry viewer
-│   ├── feedback.php           # Inbox reading citizen feedback messages
-│   └── notifications.php     # Publishing and deleting scheme alerts & bulletins
+│   ├── index.php
+│   ├── login.php
+│   ├── schemes.php
+│   ├── users.php
+│   ├── feedback.php
+│   └── notifications.php
+│
 ├── includes/
-│   ├── db.php                 # PDO MySQL secure database connection configuration
-│   ├── auth.php               # Roles authorization and route-guards checks
-│   ├── functions.php          # Common helper variables (Sanitization, Badges, Rupees)
-│   ├── header.php             # Common header navigation, alerts, Dark toggler
-│   └── footer.php             # Common footer, sticky comparison bar, modals
+│   ├── db.php
+│   ├── auth.php
+│   ├── functions.php
+│   ├── header.php
+│   └── footer.php
+│
 ├── api/
-│   ├── schemes.php            # AJAX list catalog query endpoint (compare fetcher)
-│   ├── search.php             # Autocomplete keyword search suggestions debouncer
-│   ├── eligibility.php        # Dynamic matches search algorithm
-│   └── save_scheme.php        # Toggle bookmark registry actions
+│   ├── schemes.php
+│   ├── search.php
+│   ├── eligibility.php
+│   └── save_scheme.php
+│
 ├── assets/
 │   ├── css/
-│   │   ├── style.css          # Main responsive design HSL variables & typography
-│   │   └── admin.css          # Dark themed admin layout panels & tables styling
+│   │   ├── style.css
+│   │   └── admin.css
+│   │
 │   └── js/
-│       ├── main.js            # General initialization & loading spinners
-│       ├── dark-mode.js       # LocalStorage theme attributes persist controllers
-│       ├── search.js          # Debounced fetch search autocomplete handler
-│       ├── comparison.js      # SessionStorage compared schemes builder
-│       └── eligibility.js     # Wizard transitions and card listings compiler
+│       ├── main.js
+│       ├── dark-mode.js
+│       ├── search.js
+│       ├── comparison.js
+│       └── eligibility.js
+│
 ├── database/
-│   └── schema.sql             # SQL database schema and seeds datasets
-└── README.md                  # Comprehensive configuration manual
+│   └── schema.sql
+│
+└── README.md
 ```
 
+## ⚙️ Installation and Setup
+
+Follow these steps to run GovAware locally using XAMPP.
+
+### Step 1: Install XAMPP
+
+1. Download and install XAMPP.
+2. Open the XAMPP installation directory.
+3. Navigate to:
+
+   `C:\xampp\htdocs\`
+
+4. Place the project folder inside `htdocs`.
+
+The project directory should be:
+
+```text
+C:\xampp\htdocs\smart-gov-portal\
+```
+
+### Step 2: Start Apache and MySQL
+
+1. Open the XAMPP Control Panel.
+2. Start **Apache**.
+3. Start **MySQL**.
+4. Ensure both services are running.
+
+### Step 3: Create the Database
+
+1. Open your browser and navigate to:
+
+   `http://localhost/phpmyadmin/`
+
+2. Select **New**.
+3. Create a database named:
+
+   `smart_gov_db`
+
+4. Select the collation:
+
+   `utf8mb4_unicode_ci`
+
+### Step 4: Import the Database
+
+1. Select the newly created `smart_gov_db` database.
+2. Open the **Import** tab.
+3. Choose the project database file:
+
+   `database/schema.sql`
+
+4. Click **Import** or **Go**.
+5. Verify that the database tables have been created successfully.
+
+The expected tables are:
+
+- `users`
+- `admins`
+- `schemes`
+- `saved_schemes`
+- `feedback`
+- `notifications`
+
+### Step 5: Configure the Database Connection
+
+Check the database connection settings in:
+
+```text
+includes/db.php
+```
+
+For a default local XAMPP installation, the configuration may use:
+
+```php
+$host = '127.0.0.1';
+$db   = 'smart_gov_db';
+$user = 'root';
+$pass = '';
+```
+
+Update these values if your MySQL configuration is different.
+
+### Step 6: Run GovAware
+
+Open your browser and visit:
+
+**http://localhost/smart-gov-portal/**
+
+The GovAware homepage should now be accessible.
+
+## 🔐 Administrator Access
+
+Administrator login page:
+
+`http://localhost/smart-gov-portal/admin/login.php`
+
+Use the administrator account configured in the database.
+
+If demo credentials are provided with your local database, use those credentials for testing. Change any default password before deployment or public use.
+
+## 🛡️ Security Features
+
+The application incorporates several security practices:
+
+- **SQL Injection Protection:** Uses PDO prepared statements and parameter binding for database operations.
+- **XSS Mitigation:** Uses HTML output escaping through PHP's `htmlspecialchars()` function.
+- **Password Hashing:** Uses PHP's `password_hash()` function with bcrypt for password storage.
+- **Session-Based Authentication:** Uses PHP sessions to maintain authenticated user access.
+- **Administrator Access Checks:** Uses administrator session validation to restrict access to administrative pages.
+
+These measures help reduce common web application security risks. Production deployment should also include CSRF protection, secure session configuration, input validation, and appropriate database permissions.
+
+## 🎯 Project Objectives
+
+- Improve awareness of central and state government welfare schemes.
+- Make scheme information easier for citizens to access.
+- Simplify the process of checking scheme eligibility.
+- Help citizens compare available schemes.
+- Provide administrators with tools to manage scheme information.
+- Develop a centralized and user-friendly government scheme information portal.
+
+## 🚀 Future Enhancements
+
+- Integration with verified government scheme information sources.
+- Multilingual interface support.
+- Email and SMS notifications.
+- More advanced eligibility recommendation features.
+- Additional accessibility improvements.
+
+## 🎓 Project Information
+
+**Project Name:** GovAware  
+**Project Type:** MCA Final-Year Project  
+**Project Category:** Full-Stack Web Application  
+**Domain:** Government Welfare Scheme Awareness
+
 ---
 
-## 🛠️ Step-by-Step Installation Guide (XAMPP Environment)
-
-Follow these steps to deploy and run this project locally:
-
-### Step 1: Clone or Copy Project Files
-1. Ensure **XAMPP** is installed on your computer.
-2. Navigate to your XAMPP installation directory (typically `C:\xampp\htdocs\`).
-3. Create a subdirectory named `smart-gov-portal` and copy all these project files into it.
-   * File path should look like: `C:\xampp\htdocs\smart-gov-portal\index.php`
-
-### Step 2: Start XAMPP Control Panel
-1. Open the **XAMPP Control Panel** application.
-2. Click **Start** on the **Apache** module.
-3. Click **Start** on the **MySQL** module.
-4. Ensure both modules are running and highlighted in green.
-
-### Step 3: Set Up and Import the Database
-1. Open your web browser and go to: `http://localhost/phpmyadmin/`
-2. Click on **New** in the left sidebar to create a new database.
-3. Name the database **`smart_gov_db`** and select **Collation** as `utf8mb4_unicode_ci` or `utf8mb4_general_ci`. Click **Create**.
-4. Select the newly created `smart_gov_db` database, and go to the **Import** tab on the top menu.
-5. Click **Choose File** and browse to select the **`schema.sql`** file located inside the project:
-   * Directory: `C:\xampp\htdocs\smart-gov-portal\database\schema.sql`
-6. Click **Import** (or **Go**) at the bottom.
-7. Verification: You should see 6 tables successfully created (`users`, `admins`, `schemes`, `saved_schemes`, `feedback`, `notifications`) populated with realistic sample data.
-
-### Step 4: Run the Portal
-1. Open your browser and navigate to: **`http://localhost/smart-gov-portal/`**
-2. The homepage should load instantly with clean styling and active data listings.
-
----
-
-## 🔑 Default Credentials
-
-### 1. Administrative Panel Login
-* **URL**: `http://localhost/smart-gov-portal/admin/login.php`
-* **Username**: `admin`
-* **Password**: `AdminPassword123`
-
-### 2. Sample Citizens / Users Registration
-* You can register new citizen profiles directly using the **Register** form.
-* Alternatively, log in with an existing sample user if created, or proceed to build custom profiles dynamically.
-
----
-
-## 🛡️ Security Measures Implemented
-
-* **SQL Injection Prevention**: All database queries are executed using **PHP Data Objects (PDO)** with prepared statements and parameter bindings.
-* **XSS Attack Prevention**: Input data is sanitized using a custom `sanitize()` function applying `htmlspecialchars()` prior to being output in HTML.
-* **Password Hashing**: Citizen passwords are encrypted using strong **Bcrypt (`password_hash()`)** algorithms during registration.
-* **Administrative Session Guard**: Admin panel routes (`admin/`) checks and validates `$_SESSION['is_admin']` to prevent unauthorized access.
+*GovAware – Making Government Schemes Easier to Discover and Understand.*
